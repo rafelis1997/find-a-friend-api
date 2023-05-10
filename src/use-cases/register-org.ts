@@ -8,7 +8,8 @@ interface RegisterOrgUseCaseRequest {
   title: string
   description: string | null
   admin_name: string
-  adress_name: string
+  address_name: string
+  city: string
   email: string
   password: string
   phone: string
@@ -27,7 +28,8 @@ export class RegisterOrgUseCase {
     password,
     title,
     admin_name,
-    adress_name,
+    city,
+    address_name,
     description,
     phone,
     zip_code,
@@ -45,7 +47,8 @@ export class RegisterOrgUseCase {
       password_hash,
       title,
       admin_name,
-      adress_name,
+      address_name,
+      city,
       description,
       phone,
       zip_code,

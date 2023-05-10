@@ -47,7 +47,8 @@ model Org {
   admin_name    String
   email         String
   zip_code      Int
-  adress_name   String
+  address_name  String
+  city          String
   phone         String
   password_hash String
   created_at    DateTime @default(now())
@@ -67,8 +68,8 @@ model Pet {
   environment        Environment      @default(WIDE_OPEN)
   puppy_dependency   PuppyDependencie @default(MEDIUM)
   adopted            Boolean
-  puppy_photos       String[]         @default([])
-  puppy_adoption_req String[]         @default([])
+  puppy_photos       String?
+  puppy_adoption_req String?
   org                Org              @relation(fields: [org_id], references: [id])
   org_id             String
 

@@ -1,9 +1,12 @@
 import { Pet, Prisma } from '@prisma/client'
-import { PetsRepository } from '../pets-repository'
+import { Filters, PetsRepository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
+import { OrgsRepository } from '../orgs-repository'
 
 export class InMemoryPetsRepository implements PetsRepository {
   public items: Pet[] = []
+
+  constructor(private orgsRepository: OrgsRepository) {}
 
   async findById(id: string) {
     const pet = this.items.find((item) => item.id === id)
@@ -13,6 +16,38 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     return pet
+  }
+
+  async listPets({
+    city,
+    filters,
+  }: {
+    city: string
+    filters?: Filters | undefined
+  }): Promise<Pet[]> {
+    const orgsListByCity = (await this.orgsRepository.listAll()).filter(
+      (org) => org.city.toLowerCase() === city.toLowerCase(),
+    )
+
+    const petListByCity: Pet[] = orgsListByCity
+      .map((org) => {
+        return this.items.filter((pet) => pet.org_id === org.id)
+      })
+      .flat()
+
+    if (filters !== undefined) {
+      let filteredPets: Pet[] = [...petListByCity]
+      Object.entries(filters).forEach(([key, value]) => {
+        const petsByFilter = filteredPets.filter(
+          (pet) => pet[key as keyof Pet] === value,
+        )
+        filteredPets = [...petsByFilter]
+      })
+
+      return filteredPets
+    }
+
+    return petListByCity
   }
 
   async create(data: Prisma.PetUncheckedCreateInput) {

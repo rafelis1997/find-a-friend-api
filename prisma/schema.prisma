@@ -67,9 +67,9 @@ model Pet {
   puppy_energy       PuppyEnergy      @default(MEDIUM)
   environment        Environment      @default(WIDE_OPEN)
   puppy_dependency   PuppyDependencie @default(MEDIUM)
+  puppy_adoption_req String?
   adopted            Boolean
   puppy_photos       String?
-  puppy_adoption_req String?
   org                Org              @relation(fields: [org_id], references: [id])
   org_id             String
 

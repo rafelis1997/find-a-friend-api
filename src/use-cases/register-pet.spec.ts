@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { RegisterPetUseCase } from './register-pet'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 let petsRepository: InMemoryPetsRepository
 let orgsRepository: InMemoryOrgsRepository
@@ -23,7 +23,7 @@ describe('Register Pet Use Case', () => {
         org_id: 'org-2',
         puppy_age: 'PUPPY',
       }),
-    ).rejects.toBeInstanceOf(ResourceNotFoundError)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should be able to register an pet', async () => {

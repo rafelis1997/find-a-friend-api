@@ -1,6 +1,6 @@
 import { OrgsRepository } from '@/repositories/orgs-repository'
 import { PetsRepository } from '@/repositories/pets-repository'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 interface RegisterPetUseCaseRequest {
   name: string
@@ -38,7 +38,7 @@ export class RegisterPetUseCase {
     const org = await this.OrgsRepository.findById(org_id)
 
     if (!org) {
-      throw new ResourceNotFoundError()
+      throw new InvalidCredentialsError()
     }
 
     const pet = await this.petRepository.create({

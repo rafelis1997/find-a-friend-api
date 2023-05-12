@@ -40,6 +40,11 @@ enum Environment {
   WIDE_OPEN
 }
 
+enum Roles {
+  ADMIN
+  MEMBER
+}
+
 model Org {
   id            String   @id @default(uuid())
   title         String
@@ -51,6 +56,7 @@ model Org {
   city          String
   phone         String
   password_hash String
+  role          Roles    @default(ADMIN)
   created_at    DateTime @default(now())
   pet           Pet[]
 

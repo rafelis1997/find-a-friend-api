@@ -7,7 +7,7 @@ interface AuthenticateUseCaseRequest {
   password: string
 }
 
-export class Authenticate {
+export class AuthenticateUseCase {
   constructor(private orgsRepository: OrgsRepository) {}
 
   async execute({ email, password }: AuthenticateUseCaseRequest) {

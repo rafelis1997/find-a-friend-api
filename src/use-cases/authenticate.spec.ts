@@ -1,17 +1,17 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { hash } from 'bcrypt'
 
-import { Authenticate } from './authenticate'
+import { AuthenticateUseCase } from './authenticate'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 
 let orgsRepository: InMemoryOrgsRepository
-let sut: Authenticate
+let sut: AuthenticateUseCase
 
 describe('Register Org Use Case', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository()
-    sut = new Authenticate(orgsRepository)
+    sut = new AuthenticateUseCase(orgsRepository)
   })
 
   it('should not be able authenticate with wrong email', async () => {
@@ -20,8 +20,9 @@ describe('Register Org Use Case', () => {
       title: 'Test Organization',
       password_hash: await hash('123456', 6),
       admin_name: 'John Doe',
-      adress_name: 'Empty Street, 123',
+      address_name: 'Empty Street, 123',
       phone: '+55123456789',
+      city: 'San Francisco',
       zip_code: 12345678,
       description: null,
     })
@@ -40,7 +41,8 @@ describe('Register Org Use Case', () => {
       title: 'Test Organization',
       password_hash: await hash('123456', 6),
       admin_name: 'John Doe',
-      adress_name: 'Empty Street, 123',
+      address_name: 'Empty Street, 123',
+      city: 'San Francisco',
       phone: '+55123456789',
       zip_code: 12345678,
       description: null,
@@ -60,7 +62,8 @@ describe('Register Org Use Case', () => {
       title: 'Test Organization',
       password_hash: await hash('123456', 6),
       admin_name: 'John Doe',
-      adress_name: 'Empty Street, 123',
+      address_name: 'Empty Street, 123',
+      city: 'San Francisco',
       phone: '+55123456789',
       zip_code: 12345678,
       description: null,

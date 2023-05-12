@@ -1,6 +1,6 @@
 import { Filters, PetsRepository } from '@/repositories/pets-repository'
 
-export class ListPetsByCityUseCase {
+export class ListPetsUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute({ city, filters }: { city: string; filters?: Filters }) {

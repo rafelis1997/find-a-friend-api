@@ -31,7 +31,9 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     const petListByCity: Pet[] = orgsListByCity
       .map((org) => {
-        return this.items.filter((pet) => pet.org_id === org.id)
+        return this.items.filter(
+          (pet) => pet.org_id === org.id && pet.adopted === false,
+        )
       })
       .flat()
 

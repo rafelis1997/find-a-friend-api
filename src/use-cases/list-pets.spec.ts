@@ -2,17 +2,17 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { ListPetsByCityUseCase } from './list-pets-by-city'
+import { ListPetsUseCase } from './list-pets'
 
 let petsRepository: InMemoryPetsRepository
 let orgsRepository: InMemoryOrgsRepository
-let sut: ListPetsByCityUseCase
+let sut: ListPetsUseCase
 
-describe('Register Pet Use Case', () => {
+describe('List Pets Use Case', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository()
     petsRepository = new InMemoryPetsRepository(orgsRepository)
-    sut = new ListPetsByCityUseCase(petsRepository)
+    sut = new ListPetsUseCase(petsRepository)
   })
 
   it('should be able to list pets without filter', async () => {

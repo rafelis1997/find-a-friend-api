@@ -37,7 +37,10 @@ export class PrismaPetsRepository implements PetsRepository {
       },
       where: {
         org: {
-          city,
+          city: {
+            contains: city,
+            mode: 'insensitive',
+          },
         },
         puppy_age: filters?.puppy_age,
         puppy_dependency: filters?.puppy_dependency,

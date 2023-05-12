@@ -15,7 +15,7 @@ export async function petDetails(request: FastifyRequest, reply: FastifyReply) {
 
     const { pet } = await petDetailsUseCase.execute(petId)
 
-    return reply.status(200).send({ pet })
+    return reply.status(200).send(pet)
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
       return reply.status(404).send({ message: error.message })

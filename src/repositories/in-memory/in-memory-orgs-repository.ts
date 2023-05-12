@@ -41,6 +41,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       address_name: data.address_name,
       city: data.city,
       phone: data.phone,
+      role: 'ADMIN',
       zip_code: data.zip_code,
       created_at: new Date(),
     } satisfies Prisma.OrgCreateInput

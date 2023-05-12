@@ -1,6 +1,6 @@
 import { OrgsRepository } from '@/repositories/orgs-repository'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
-import { compare } from 'bcrypt'
+import { compare } from 'bcryptjs'
 
 interface AuthenticateUseCaseRequest {
   email: string

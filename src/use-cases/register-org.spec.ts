@@ -1,4 +1,4 @@
-import { compare } from 'bcrypt'
+import { compare } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { RegisterOrgUseCase } from './register-org'
